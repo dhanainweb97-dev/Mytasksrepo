@@ -1,0 +1,11 @@
+Task -1 
+
+make directory - mkdir my_folder
+navigate - cd my_folder
+create a file - touch my_file.txt
+edit file - nano my_file.txt
+create another file - touch another_file.txt
+edit file - nano another_file.txt 
+add files - cat another_file.txt >> my_file.txt
+view - cat my_file.txt
+list all files and directories - ls -a
