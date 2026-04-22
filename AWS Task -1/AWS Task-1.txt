@@ -1,0 +1,5 @@
+Step1: Created an EC2 instance with windows as AMI.
+Step2: Generated the keypair and launched the instance. 
+Step3: Click connect and select the RDP client, uploaded the keypair to get the password.
+Step4: Took the admin Id and password and connected to the RDP via the public IP address. 
+Step5: ping systeminfo to get the details.
