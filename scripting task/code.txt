@@ -1,0 +1,56 @@
+Task1: 
+Print http code
+
+nano codefile.sh
+
+#!/bin/bash
+
+url="https://guvi.in"
+
+code=$(curl -o /dev/null -s -w "%{http_code}" "$url")
+
+echo "HTTP status code: $code"
+
+if [ $code -eq 200 ]; then 
+echo "Success"
+else
+echo "Failure"
+fi
+
+chmod +x codefile.sh
+./codefile.sh
+
+====================================================================================
+Task 2
+
+nano file.txt
+
+###content###
+Give me your pen
+Ask them to give the paper
+Give me the book
+Tell him to give the pen 
+Inform the teacher to give the answer sheets
+Give the pen and paper
+
+##script##
+nano replace.sh
+
+#!/bin/bash
+
+file="file.txt"
+
+sed -n '5,$p' $file | while read line
+do
+    if [[ $line == *"Inform"* ]]; then
+        new_line=$(echo "$line" | sed 's/give/learning/g')
+        echo "$new_line"
+    else
+        echo "$line"
+    fi
+done
+
+chmod +x replace.sh
+./replace.sh
+
+
