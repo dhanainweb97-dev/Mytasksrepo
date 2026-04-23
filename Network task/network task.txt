@@ -1,0 +1,7 @@
+To get IP address of a domain - nslookup guvi.in
+Find CPU/Memory usage of my server - htop
+
+Test the connectivity between 2 nodes
+ping guvi.in get the IP address and check using telnet 172.67.70.207 22
+
+command to check if port is listening or not - netstat -tulnp | grep 9000
