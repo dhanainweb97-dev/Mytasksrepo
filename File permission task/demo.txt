@@ -1,0 +1,3 @@
+Create a file - touch demo.txt
+show permission - ls -l
+change permission - chmod 764 demo.txt
