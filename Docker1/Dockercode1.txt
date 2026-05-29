@@ -1,0 +1,29 @@
+---------Docker Installation-----------------
+1. connect to the ec2 instance
+2. Perform the update - sudo apt update -y
+3. Install - docker - sudo apt install docker.io -y
+4. Enable docker on boot - sudo systemctl enable docker
+5. Verify docker - docker --version
+6. Perform without sudo - sudo usermod -aG docker ubuntu
+7. Test working - docker ps
+
+--------------------Docker images---------------
+1. Pull a image - docker pull nginx
+2. List images  - docker images ls
+
+--------------------Docker Container--------------
+1. Run container with port mapping - docker run -d --name mynginx -p 80:80 nginx
+2. verify container - docker ps -a
+3. Stop container - docker stop mynginx
+4. Start container - docker start mynginx
+5. Remove container - docker rm mynginx
+
+--------------------Docker Volumes------------------
+1. create a volume - docker volume create testvolume
+2. Verify - docker volume ls
+
+--------------------Docker network--------
+1. create a network - docker network create mytestnetwork
+2. verify - docker network ls
+
+
