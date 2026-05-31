@@ -1,0 +1,85 @@
+1. Connect to an EC2 instance and update the same. 
+
+sudo apt update -y
+sudo apt upgrade -y
+
+2. Install, enable and start docker, verify the status 
+
+sudo apt install docker.io
+sudo apt systemctl enable docker
+sudo apt systemctl start docker 
+sudo systemctl status docker
+docker --version
+
+3. Create a directory 
+
+mkdir custom-nginx
+cd custom-nginx
+nano index.html
+
+<!DOCTYPE HTML> 
+<html>
+<head>Custom Nginx Server</head>
+<body>
+<h1>Hello World!!<h1>
+<p>First custom-nginx website creation<p>
+<p>Devops</p>
+</body>
+</html>
+
+4. Create a docker file - Dockerfile.yml
+
+FROM nginx:latest
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+5. make a dir as per the requirement
+
+sudo mkdir -p /var/opt/nginx
+
+6. copy the index page to the directory and verify the same.
+
+sudo cp index.html /var/opt/nginx/index.html
+
+ls -l /var/opt/nginx
+
+
+6. Create a docker compose - docker-compose.yml
+
+services:
+  nginx:
+    build: .
+    container_name: custom-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /var/opt/nginx:/usr/share/nginx/html
+
+6. When building the docker file
+
+sudo docker compose up -d --build
+
+7. verify the docker and change the security group to allow http in port 80
+
+sudo docker ps
+
+8. Build docker images and tag it
+
+sudo docker images
+sudo docker tag custom-nginx-nginx:latest dhanainweb97/custom-nginx:v1
+
+9. Login to docker hub
+
+sudo docker login
+
+10. push the image to the docker hub
+
+sudo docker push dhanainweb97/custom-nginx:v1
+
+
+
+
+
+
