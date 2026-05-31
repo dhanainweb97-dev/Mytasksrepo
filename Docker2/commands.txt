@@ -1,0 +1,61 @@
+1. Connect to an EC2 instance and update the same. 
+
+sudo apt update -y
+sudo apt upgrade -y
+
+2. Install, enable and start docker, verify the status 
+
+sudo apt install docker.io
+sudo apt systemctl enable docker
+sudo apt systemctl start docker 
+sudo systemctl status docker
+docker --version
+
+3. Create a directory 
+
+mkdir website
+cd website
+nano index.html
+
+<!DOCTYPE HTML> 
+<html>
+<head>MY DETAILS</head>
+<body>
+<h1>Dhanalakshmi<h1>
+<p>First website creation<p>
+<p>Devops</p>
+</body>
+</html>
+
+4. Create a docker file - Dockerfile.yml
+
+FROM nginx
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+
+
+5. Create a docker compose - docker-compose.yml
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+
+6. When building the docker file, getting error, so installed the docker compose
+
+sudo apt install docker-compose -y
+sudo docker compose version up -d
+
+7. verify the docker and change the security group to allow http in port 80 and accessed the EC2 public ip to get output/
+sudo docker ps
+
+
+
+
+
