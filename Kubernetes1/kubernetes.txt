@@ -1,0 +1,34 @@
+1. Launch the Ec2 instance with t2.medium and allow the port 30000-32767
+2. Run commands to install docker and verify
+	sudo apt update - to update the packages
+	sudo apt install docker.io -y - install the docker
+	sudo systemctl enable docker
+	sudo systemctl start docker
+	docker --version	- verify the docker version
+
+3. Install kubectl
+	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" - download
+	chmod +x kubectl - make it executable
+	sudo mv kubectl /usr/local/bin/ - move path
+	kubectl version --client - verify installation
+
+4. Install minikube
+	curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 - Download
+	sudo install minikube-linux-amd64 /usr/local/bin/minikube - Installation
+	minikube version - verify installation
+	sudo usermod -aG docker ubuntu - add docker to usergroup
+	minikube start --driver=docker - start docker
+	kubectl get nodes - verify the cluster 
+
+5. Exloring namespaces
+	kubectl get ns
+	kubectl create namespace dev
+	kubectl create namespace prod
+	kubectl create namespace test
+	kubectl run nginx --image=nginx -n dev
+	kubectl get pods -n dev
+	kubectl get pods -A
+	kubectl get pods -n dev
+	kubectl delete namespace test
+	minikube stop
+	minikube delete
