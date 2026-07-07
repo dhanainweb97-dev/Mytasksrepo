@@ -1,0 +1,74 @@
+Step 1: Connect to EC2 instance with t3.medium and allow port SSH, HTTP and HTTPS
+
+Step 2: Install Amazon CLI
+	sudo apt update
+
+	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+
+	sudo apt install unzip -y
+
+	unzip awscliv2.zip
+
+	sudo ./aws/install
+
+Step 3: Verify the installation 
+	aws --version
+
+Step 4: Create an IAM user with administrator access and connect using AWS configure from EC2
+
+Step 5: Install kubectl and verify
+	
+	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+	chmod +x kubectl
+
+	sudo mv kubectl /usr/local/bin/
+
+	kubectl version --client
+
+Step 6: Install eksctl and verify
+	
+	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+	sudo mv /tmp/eksctl /usr/local/bin
+
+	eksctl version
+
+Step 7: Create an ekscluster and verify 
+
+	eksctl create cluster \
+--name demo-cluster \
+--region ap-south-1 \
+--nodegroup-name demo-workers \
+--node-type t3.medium \
+--nodes 2 \
+--nodes-min 2 \
+--nodes-max 2 \
+--managed
+
+	kubectl get nodes
+
+Step 8: create nginx deployment and verify
+
+	nano nginx-deploy.yaml 
+
+	kubectl apply -f nginx-deploy.yaml
+
+	kubectl get deployment
+
+	kubectl get pods
+
+step 9: Expose deployment
+
+	nano nginx-service.yaml
+	 
+	kubectl apply -f nginx-service.yaml
+
+step 10: check the service
+
+	kubectl get svc
+	
+step 11: use the external IP and check in browser
+
+	http://<external IP>
+	
