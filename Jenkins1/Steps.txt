@@ -1,0 +1,19 @@
+1. Open EC2 instance and allow SSH, HTTP and TCP at port 8080
+2. Update the instance and install java
+	sudo apt update
+	sudo apt upgrade -y
+	sudo apt install fontconfig openjdk-21-jre -y
+	java -version
+3. Install Jenkins
+	curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+	echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/deb
+	sudo apt install fontconfig openjdk-21-jre -y
+	sudo apt install jenkins -y
+4. Start jenkins
+	sudo systemctl enable jenkins
+	sudo systemctl start jenkins
+	sudo systemctl status jenkins
+5. Launch using the public ip
+	http://<publicip>:8080
+6. New item -> Freestyle project -> Execute shell ->  build now
+7. Manage Jenkins -> Security -> users -> create user 
